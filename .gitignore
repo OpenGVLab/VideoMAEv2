@@ -144,3 +144,4 @@ cython_debug/
 
 # others
 work_dir/
+data/
