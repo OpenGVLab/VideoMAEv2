@@ -17,13 +17,14 @@
 > Nanjing University, Shanghai AI Lab, CAS<br>
 
 ## News
+**[2023.04.19]** ViT-giant model weights have been released! You can get the download links from [MODEL_ZOO.md](docs/MODEL_ZOO.md).<br>
 **[2023.04.18]** Code and the distilled models (vit-s & vit-b) have been released!<br>
 **[2023.04.03]** ~~Code and models will be released soon.~~<br>
 
 
 ## Model Zoo
 
-We now provide the distilled models in [MODEL_ZOO.md](docs/MODEL_ZOO.md).
+We now provide the model weights in [MODEL_ZOO.md](docs/MODEL_ZOO.md).
 
 ## Installation
 
