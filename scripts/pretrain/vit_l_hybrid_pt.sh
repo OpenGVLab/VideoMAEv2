@@ -37,6 +37,7 @@ srun -p $PARTITION \
         --batch_size 32 \
         --num_frames 16 \
         --sampling_rate 4 \
+        --num_sample 4 \
         --num_workers 10 \
         --opt adamw \
         --lr 1e-3 \
