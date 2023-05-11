@@ -18,6 +18,7 @@
 > Nanjing University, Shanghai AI Lab, CAS<br>
 
 ## News
+**[2023.05.11]** We have supported testing of our distilled models at MMAction2 (dev version)! See [PR#2469](https://github.com/open-mmlab/mmaction2/pull/2460).<br>
 **[2023.05.11]** The feature extraction script for TAD datasets has been released! See instructions at [TAD.md](docs/TAD.md).<br>
 **[2023.04.19]** ViT-giant model weights have been released! You can get the download links from [MODEL_ZOO.md](docs/MODEL_ZOO.md).<br>
 **[2023.04.18]** Code and the distilled models (vit-s & vit-b) have been released!<br>
@@ -26,7 +27,12 @@
 
 ## Model Zoo
 
-We now provide the model weights in [MODEL_ZOO.md](docs/MODEL_ZOO.md).
+We now provide the model weights in [MODEL_ZOO.md](docs/MODEL_ZOO.md). We have additionally provided distilled models in MODEL_ZOO.
+
+|  Model  | Dataset | Teacher Model | \#Frame | K710 Top-1 | K400 Top-1 | K600 Top-1 |
+| :-----: | :-----: | :-----------: | :-----: | :--------: | :--------: | :--------: |
+| ViT-small | K710 | vit_g_hybrid_pt_1200e_k710_ft | 16x5x3 | 77.6 | 83.7 | 83.1 |
+| ViT-base | K710 | vit_g_hybrid_pt_1200e_k710_ft | 16x5x3 | 81.5 | 86.6 | 85.9 |
 
 ## Installation
 
