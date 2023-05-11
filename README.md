@@ -18,7 +18,7 @@
 > Nanjing University, Shanghai AI Lab, CAS<br>
 
 ## News
-**[2023.05.11]** We have supported testing of our distilled models at MMAction2 (dev version)! See [PR#2469](https://github.com/open-mmlab/mmaction2/pull/2460).<br>
+**[2023.05.11]** We have supported testing of our distilled models at MMAction2 (dev version)! See [PR#2460](https://github.com/open-mmlab/mmaction2/pull/2460).<br>
 **[2023.05.11]** The feature extraction script for TAD datasets has been released! See instructions at [TAD.md](docs/TAD.md).<br>
 **[2023.04.19]** ViT-giant model weights have been released! You can get the download links from [MODEL_ZOO.md](docs/MODEL_ZOO.md).<br>
 **[2023.04.18]** Code and the distilled models (vit-s & vit-b) have been released!<br>
