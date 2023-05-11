@@ -156,6 +156,7 @@ def extract_feature(args):
                 feature = model.forward_features(input_data)
                 feature_list.append(feature.cpu().numpy())
 
+        # [N, C]
         np.save(url, np.vstack(feature_list))
         print(f'[{idx} / {num_videos}]: save feature on {url}')
 
