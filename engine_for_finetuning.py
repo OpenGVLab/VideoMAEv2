@@ -8,6 +8,7 @@
 import math
 import os
 import sys
+from multiprocessing import Pool
 from typing import Iterable, Optional
 
 import numpy as np
@@ -288,7 +289,7 @@ def merge(eval_path, num_tasks, method='prob'):
             chunk_nb = line.split(']')[1].split(' ')[2]
             split_nb = line.split(']')[1].split(' ')[3]
             data = np.fromstring(
-                line.split('[')[1].split(']')[0], dtype=np.float, sep=',')
+                line.split('[')[1].split(']')[0], dtype=float, sep=',')
             if name not in dict_feats:
                 dict_feats[name] = []
                 dict_label[name] = 0
@@ -304,15 +305,13 @@ def merge(eval_path, num_tasks, method='prob'):
     print("Computing final results")
 
     input_lst = []
-    print(len(dict_feats))
     for i, item in enumerate(dict_feats):
         input_lst.append([i, item, dict_feats[item], dict_label[item]])
-    from multiprocessing import Pool
     p = Pool(64)
+    # [pred, top1, top5, label]
     ans = p.map(compute_video, input_lst)
     top1 = [x[1] for x in ans]
     top5 = [x[2] for x in ans]
-    # pred = [x[0] for x in ans]
     label = [x[3] for x in ans]
     final_top1, final_top5 = np.mean(top1), np.mean(top5)
 
