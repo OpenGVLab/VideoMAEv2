@@ -18,6 +18,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import torch.backends.cudnn as cudnn
+from packaging import version
 from timm.models import create_model
 
 # NOTE: Do not comment `import models`, it is used to register models
@@ -262,6 +263,10 @@ def get_model(args):
         tubelet_size=args.tubelet_size,
         decoder_depth=args.decoder_depth,
         with_cp=args.with_checkpoint)
+
+    if version.parse(torch.__version__) > version.parse('1.13.1'):
+        torch.set_float32_matmul_precision('high')
+        model = torch.compile(model)
 
     return model
 
