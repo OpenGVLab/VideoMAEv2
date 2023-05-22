@@ -4,8 +4,72 @@ import random
 import numpy as np
 import torch
 from PIL import Image
+from torchvision import transforms
 
 from .loader import get_image_loader, get_video_loader
+from .masking_generator import (
+    RunningCellMaskingGenerator,
+    TubeMaskingGenerator,
+)
+from .transforms import (
+    GroupMultiScaleCrop,
+    GroupNormalize,
+    Stack,
+    ToTorchFormatTensor,
+)
+
+
+class DataAugmentationForVideoMAEv2(object):
+
+    def __init__(self, args):
+        self.input_mean = [0.485, 0.456, 0.406]
+        self.input_std = [0.229, 0.224, 0.225]
+        div = True
+        roll = False
+        normalize = GroupNormalize(self.input_mean, self.input_std)
+        self.train_augmentation = GroupMultiScaleCrop(args.input_size,
+                                                      [1, .875, .75, .66])
+        self.transform = transforms.Compose([
+            self.train_augmentation,
+            Stack(roll=roll),
+            ToTorchFormatTensor(div=div),
+            normalize,
+        ])
+        if args.mask_type == 'tube':
+            self.encoder_mask_map_generator = TubeMaskingGenerator(
+                args.window_size, args.mask_ratio)
+        else:
+            raise NotImplementedError(
+                'Unsupported encoder masking strategy type.')
+        if args.decoder_mask_ratio > 0.:
+            if args.decoder_mask_type == 'run_cell':
+                self.decoder_mask_map_generator = RunningCellMaskingGenerator(
+                    args.window_size, args.decoder_mask_ratio)
+            else:
+                raise NotImplementedError(
+                    'Unsupported decoder masking strategy type.')
+
+    def __call__(self, images):
+        process_data, _ = self.transform(images)
+        encoder_mask_map = self.encoder_mask_map_generator()
+        if hasattr(self, 'decoder_mask_map_generator'):
+            decoder_mask_map = self.decoder_mask_map_generator()
+        else:
+            decoder_mask_map = 1 - encoder_mask_map
+        return process_data, encoder_mask_map, decoder_mask_map
+
+    def __repr__(self):
+        repr = "(DataAugmentationForVideoMAEv2,\n"
+        repr += "  transform = %s,\n" % str(self.transform)
+        repr += "  Encoder Masking Generator = %s,\n" % str(
+            self.encoder_mask_map_generator)
+        if hasattr(self, 'decoder_mask_map_generator'):
+            repr += "  Decoder Masking Generator = %s,\n" % str(
+                self.decoder_mask_map_generator)
+        else:
+            repr += "  Do not use decoder masking,\n"
+        repr += ")"
+        return repr
 
 
 class HybridVideoMAE(torch.utils.data.Dataset):
