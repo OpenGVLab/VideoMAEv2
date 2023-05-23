@@ -554,6 +554,11 @@ def main(args, ds_init):
                 break
         if checkpoint_model is None:
             checkpoint_model = checkpoint
+        for old_key in list(checkpoint_model.keys()):
+            if old_key.startswith('_orig_mod.'):
+                new_key = old_key[10:]
+                checkpoint_model[new_key] = checkpoint_model.pop(old_key)
+
         state_dict = model.state_dict()
         for k in ['head.weight', 'head.bias']:
             if k in checkpoint_model and checkpoint_model[

@@ -7,7 +7,6 @@ numpy
 opencv-python
 pandas
 Pillow
-python>=3.8
 scipy
 tensorboard==2.9.0
 tensorboardX==1.8
