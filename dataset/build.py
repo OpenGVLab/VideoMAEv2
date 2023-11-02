@@ -15,7 +15,7 @@ from .pretrain_datasets import (  # noqa: F401
 
 def build_pretraining_dataset(args):
     transform = DataAugmentationForVideoMAEv2(args)
-    dataset = VideoMAE(
+    dataset = HybridVideoMAE(
         root=args.data_root,
         setting=args.data_path,
         train=True,
