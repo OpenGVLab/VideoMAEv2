@@ -173,9 +173,9 @@ class HybridVideoMAE(torch.utils.data.Dataset):
         # thus being consistent with the fine-tuning stage
         # Note that the ssv2 we use is decoded to frames at 12 fps;
         # if decoded at 24 fps, the sample interval should be 4.
-        self.ssv2_skip_length = self.new_length * 2
+        self.orig_new_step = new_step
         self.orig_skip_length = self.skip_length
-
+        
         self.video_loader = get_video_loader()
         self.image_loader = get_image_loader()
 
@@ -191,7 +191,8 @@ class HybridVideoMAE(torch.utils.data.Dataset):
         try:
             video_name, start_idx, total_frame = self.clips[index]
             self.skip_length = self.orig_skip_length
-
+            self.new_step = self.orig_new_step
+            
             if total_frame < 0:
                 decord_vr = self.video_loader(video_name)
                 duration = len(decord_vr)
@@ -210,7 +211,8 @@ class HybridVideoMAE(torch.utils.data.Dataset):
             else:
                 # ssv2 & ava & other rawframe dataset
                 if 'SomethingV2' in video_name:
-                    self.skip_length = self.ssv2_skip_length
+                    self.new_step = 2
+                    self.skip_length = self.new_length * self.new_step
                     fname_tmpl = self.ssv2_fname_tmpl
                 elif 'AVA2.2' in video_name:
                     fname_tmpl = self.ava_fname_tmpl
