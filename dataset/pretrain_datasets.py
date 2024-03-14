@@ -153,6 +153,7 @@ class HybridVideoMAE(torch.utils.data.Dataset):
         self.num_crop = num_crop
         self.new_length = new_length
         self.new_step = new_step
+        self.restore_step = new_step
         self.skip_length = self.new_length * self.new_step
         self.temporal_jitter = temporal_jitter
         self.name_pattern = name_pattern
@@ -189,7 +190,8 @@ class HybridVideoMAE(torch.utils.data.Dataset):
         try:
             video_name, start_idx, total_frame = self.clips[index]
             self.skip_length = self.orig_skip_length
-
+            self.new_step = self.restore_step
+            
             if total_frame < 0:
                 decord_vr = self.video_loader(video_name)
                 duration = len(decord_vr)
