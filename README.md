@@ -18,6 +18,7 @@
 > Nanjing University, Shanghai AI Lab, CAS<br>
 
 ## News
+**[2024.09.19]** Checkpoints have been migrated to Hugging Face. You can obtain weights from [VideoMAEv2-hf](https://huggingface.co/OpenGVLab/VideoMAE2/tree/main).<br>
 **[2023.05.29]** VideoMAE V2-g features for THUMOS14 and FineAction datasets are available at [TAD.md](docs/TAD.md) now.<br>
 **[2023.05.11]** We have supported testing of our distilled models at MMAction2 (dev version)! See [PR#2460](https://github.com/open-mmlab/mmaction2/pull/2460).<br>
 **[2023.05.11]** The feature extraction script for TAD datasets has been released! See instructions at [TAD.md](docs/TAD.md).<br>

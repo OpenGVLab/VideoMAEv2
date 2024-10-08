@@ -32,9 +32,9 @@ The weights of the distilled models can be downloaded directly at [Distillation]
 ## Distillation
 |  Model  | Dataset | Teacher Model | \#Frame | K710 Top-1 | K400 Top-1 | K600 Top-1 | Checkpoint |
 | :-----: | :-----: | :-----------: | :-----: | :--------: | :--------: | :--------: | :--------  |
-| ViT-small | K710 | vit_g_hybrid_pt_1200e_k710_ft | 16x5x3 | 77.6 | 83.7 | 83.1 | [vit_s_k710_dl_from_giant.pth](https://huggingface.co/OpenGVLab/VideoMAE2/blob/main/distill/vit_s_k710_dl_from_giant.pth) |
+| ViT-small | K710 | vit_g_hybrid_pt_1200e_k710_ft | 16x5x3 | 77.6 | 83.7 | 83.1 | [vit_s_k710_dl_from_giant.pth](https://huggingface.co/OpenGVLab/VideoMAE2/resolve/main/distill/vit_s_k710_dl_from_giant.pth) |
 | | | fine-tuning accuracy | 16x7x3 | -- | 84.0 | 84.6 | -- | |
-| ViT-base | K710 | vit_g_hybrid_pt_1200e_k710_ft | 16x5x3 | 81.5 | 86.6 | 85.9 | [vit_b_k710_dl_from_giant.pth](https://huggingface.co/OpenGVLab/VideoMAE2/blob/main/distill/vit_b_k710_dl_from_giant.pth) |
+| ViT-base | K710 | vit_g_hybrid_pt_1200e_k710_ft | 16x5x3 | 81.5 | 86.6 | 85.9 | [vit_b_k710_dl_from_giant.pth](https://huggingface.co/OpenGVLab/VideoMAE2/resolve/main/distill/vit_b_k710_dl_from_giant.pth) |
 | | | fine-tuning accuracy | 16x7x3 | -- | 87.1 | 87.4 |  |
 
 - We initialize the parameters of the student model with the model obtained after the post-pre-train stage.
