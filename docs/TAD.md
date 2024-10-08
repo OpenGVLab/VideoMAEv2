@@ -3,8 +3,8 @@ We use the [ActionFormer](https://github.com/happyharrycn/actionformer_release) 
 
 | Dataset | Backbone | Head | mAP | Features |
 | :-----: | :------: | :--: | :-: | :------: |
-| THUMOS14 | VideoMAE V2-g | ActionFormer | 69.6 | [th14_mae_g_16_4.tar.gz](https://pjlab-gvm-data.oss-cn-shanghai.aliyuncs.com/internvideo/features/th14_mae_g_16_4.tar.gz) |
-| FineAction | VideoMAE V2-g | ActionFormer | 18.2 | [fineaction_mae_g.tar.gz](https://pjlab-gvm-data.oss-cn-shanghai.aliyuncs.com/internvideo/features/fineaction_mae_g.tar.gz) |
+| THUMOS14 | VideoMAE V2-g | ActionFormer | 69.6 | [th14_mae_g_16_4.tar.gz](https://huggingface.co/datasets/OpenGVLab/VideoMAEv2-TAL-Features/resolve/main/th14_mae_g_16_4.tar.gz) |
+| FineAction | VideoMAE V2-g | ActionFormer | 18.2 | [fineaction_mae_g.tar.gz](https://huggingface.co/datasets/OpenGVLab/VideoMAEv2-TAL-Features/resolve/main/fineaction_mae_g.tar.gz) |
 
 ## Extract feature
 Use `extract_tad_feature.py` to extract the feature of datasets. For example, to extract the feature of THUMOS14, running the following command:
